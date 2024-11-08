@@ -60,6 +60,10 @@ InsuranceCompanyBye – это приложение для управления 
 
 ![image](https://github.com/user-attachments/assets/a1d76df2-1dca-422d-9b8b-23908b87da10)
 
+<h1><b>Редактирование, добавление Клиента</b></h1>  
+
+![image](https://github.com/user-attachments/assets/de79ca16-597a-4426-bfc0-da0a6c182626)
+
 
 <h1><b>Полис</b></h1>  
 
