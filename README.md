@@ -22,6 +22,16 @@ InsuranceCompanyBye – это приложение для управления 
 
 ![image](https://github.com/user-attachments/assets/3514330d-288d-42e7-b917-4021f7a95593)
 
+
+<h1><b>Авторизация</b></h1>
+
+![image](https://github.com/user-attachments/assets/e9ab099d-5276-4616-b49f-812e891e12a8)
+
+<h1><b>Регистрация</b></h1>
+
+![image](https://github.com/user-attachments/assets/e7202849-235f-4bca-a20d-c451ef52d346)
+
+
 <h1><b>Осаго</b></h1>
 
 ![image](https://github.com/user-attachments/assets/411bd78f-cce5-47d2-bc2a-3d7527c7dcfe)
@@ -69,14 +79,6 @@ InsuranceCompanyBye – это приложение для управления 
 
 ![image](https://github.com/user-attachments/assets/d8a5b148-58f8-4e0f-8393-267987669aa6)
 
-
-<h1><b>Авторизация</b></h1>
-
-![image](https://github.com/user-attachments/assets/e9ab099d-5276-4616-b49f-812e891e12a8)
-
-<h1><b>Регистрация</b></h1>
-
-![image](https://github.com/user-attachments/assets/e7202849-235f-4bca-a20d-c451ef52d346)
 
 <h1><b>База данных</b></h1>
 
