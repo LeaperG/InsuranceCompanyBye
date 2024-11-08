@@ -5,10 +5,15 @@
 ![image](https://github.com/user-attachments/assets/3514330d-288d-42e7-b917-4021f7a95593)
 
 <h1><b>Осаго</b></h1>
+
 ![image](https://github.com/user-attachments/assets/411bd78f-cce5-47d2-bc2a-3d7527c7dcfe)
+
 ![image](https://github.com/user-attachments/assets/0d35ff04-6eeb-4e2b-8043-289d5f938ec1)
+
 ![image](https://github.com/user-attachments/assets/5b4438c7-807c-4dc6-9856-2edc759d09d3)
+
 ![image](https://github.com/user-attachments/assets/c4637bab-56ad-44c2-a9a8-cf4dce8fef9e)
+
 ![image](https://github.com/user-attachments/assets/02a518d0-55f8-4e9e-955f-af5b7fbf4bc4)
 
 <h1><b>Администратор</b></h1>
