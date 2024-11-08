@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d7e20faddd44abeb8a7cf47c4035ae3" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="DB.Accident" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="DB.Address" Width="1.5" PointX="0.75" PointY="15.875" />
+        <EntityTypeShape EntityType="DB.Agents" Width="1.5" PointX="3" PointY="11.875" />
+        <EntityTypeShape EntityType="DB.CarInsuranceTariffs" Width="1.5" PointX="5.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DB.ClaimPayments" Width="1.5" PointX="12.75" PointY="15.375" />
+        <EntityTypeShape EntityType="DB.Claims" Width="1.5" PointX="10.5" PointY="14.875" />
+        <EntityTypeShape EntityType="DB.Clients" Width="1.5" PointX="3" PointY="6.625" />
+        <EntityTypeShape EntityType="DB.Drivers" Width="1.5" PointX="3" PointY="25.25" />
+        <EntityTypeShape EntityType="DB.Gender" Width="1.5" PointX="0.75" PointY="12.5" />
+        <EntityTypeShape EntityType="DB.InsuranceCategories" Width="1.5" PointX="6" PointY="16.25" />
+        <EntityTypeShape EntityType="DB.InsuranceRisks" Width="1.5" PointX="10.5" PointY="18.625" />
+        <EntityTypeShape EntityType="DB.Owner" Width="1.5" PointX="6" PointY="12" />
+        <EntityTypeShape EntityType="DB.Policies" Width="1.5" PointX="8.25" PointY="14.75" />
+        <EntityTypeShape EntityType="DB.PolicyPayments" Width="1.5" PointX="10.5" PointY="21" />
+        <EntityTypeShape EntityType="DB.Position" Width="1.5" PointX="0.75" PointY="19.875" />
+        <EntityTypeShape EntityType="DB.Role" Width="1.5" PointX="1.5" PointY="0.75" />
+        <EntityTypeShape EntityType="DB.Status" Width="1.5" PointX="6" PointY="18.625" />
+        <EntityTypeShape EntityType="DB.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DB.UsagePurpose" Width="1.5" PointX="3" PointY="16.375" />
+        <EntityTypeShape EntityType="DB.UserAccount" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="DB.VehicleCategory" Width="1.5" PointX="3" PointY="21.625" />
+        <EntityTypeShape EntityType="DB.VehicleDocuments" Width="1.5" PointX="3" PointY="18.75" />
+        <EntityTypeShape EntityType="DB.Vehicles" Width="1.5" PointX="5.25" PointY="6.25" />
+        <EntityTypeShape EntityType="DB.VehicleType" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="DB.AgentPerformanceStatistics" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DB.ClaimStatistics" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DB.PolicyCategoryStatistics" Width="1.5" PointX="9.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DB.VehicleClientView" Width="1.5" PointX="9.75" PointY="4.75" />
+        <AssociationConnector Association="DB.FK_Clients_Address" />
+        <AssociationConnector Association="DB.FK_Owner_Address" />
+        <AssociationConnector Association="DB.FK_Agents_Gender" />
+        <AssociationConnector Association="DB.FK_Agents_Position" />
+        <AssociationConnector Association="DB.FK_Agents_UserAccount1" />
+        <AssociationConnector Association="DB.FK_Policies_Agents" />
+        <AssociationConnector Association="DB.FK__ClaimPaym__Claim__44FF419A" />
+        <AssociationConnector Association="DB.FK__Claims__PolicyID__4222D4EF" />
+        <AssociationConnector Association="DB.FK_Claims_Status" />
+        <AssociationConnector Association="DB.FK__Policies__Client__398D8EEE" />
+        <AssociationConnector Association="DB.FK_Clients_Gender" />
+        <AssociationConnector Association="DB.FK_Clients_UserAccount" />
+        <AssociationConnector Association="DB.FK_Drivers_Gender" />
+        <AssociationConnector Association="DB.FK_Owner_Gender" />
+        <AssociationConnector Association="DB.FK_Policies_Owner" />
+        <AssociationConnector Association="DB.FK__PolicyPay__Polic__59063A47" />
+        <AssociationConnector Association="DB.FK_Policies_Status" />
+        <AssociationConnector Association="DB.FK_Policies_Vehicles1" />
+        <AssociationConnector Association="DB.FK_UserAccount_Role" />
+        <AssociationConnector Association="DB.FK_Vehicles_UsagePurpose" />
+        <AssociationConnector Association="DB.FK_Vehicles_VehicleCategory" />
+        <AssociationConnector Association="DB.FK_Vehicles_VehicleDocuments" />
+        <AssociationConnector Association="DB.FK_Vehicles_VehicleType" />
+        <AssociationConnector Association="DB.ClientAccidents" />
+        <AssociationConnector Association="DB.ClientVehicles" />
+        <AssociationConnector Association="DB.DriversPolicy" />
+        <AssociationConnector Association="DB.PolicyCategories" />
+        <AssociationConnector Association="DB.PolicyRisks" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

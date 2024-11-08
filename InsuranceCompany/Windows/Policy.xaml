@@ -1,0 +1,383 @@
+﻿<Page x:Class="InsuranceCompany.Windows.Policy"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InsuranceCompany.HellperClass"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Policy">
+
+    <Page.Resources>
+        <ResourceDictionary Source="/Dictionaries/Pages.xaml"/>
+    </Page.Resources>
+
+
+
+    <Grid Background="BlueViolet">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock Text="Страховой Полис"
+            Grid.ColumnSpan="4"
+            HorizontalAlignment="Center"
+            FontSize="72"
+            Foreground="White"
+            Margin="0 30 0 0">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <Border Style="{StaticResource ItemBorder}"
+                Grid.ColumnSpan="4"
+                Width="1200"
+                Height="500">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+            </Border.Effect>
+        </Border>
+
+
+        <StackPanel HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Width="250"
+                    Grid.Column="0"
+                    Margin="0 0 0 0">
+
+            <TextBlock x:Name="Status"
+              Foreground="Gray"
+               FontSize="24"
+               Text="Статус: "
+               Height="40"
+               Margin="0 0 0 20"
+               TextAlignment="Center"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+
+
+
+                <TextBlock x:Name="HintInsuranseCost"
+               FontSize="24"
+               Foreground="Gray"
+               Text="Цена страховки: "
+               Margin="0 0 0 20"
+               TextAlignment="Center"               
+              HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+
+
+            <TextBlock x:Name="HintPolicyNumber"
+              Foreground="Gray"
+               FontSize="24"
+               Text="Номер страховки: "
+                                     HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Margin="0 0 0 20"
+               TextAlignment="Center"/>
+
+
+
+            <TextBlock x:Name="HintCoverageAmount"
+                         Foreground="Gray"
+                          FontSize="24"
+                          Text="Сумма покрытия: "
+                                     HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+                          Margin="0 0 0 20"
+                          TextAlignment="Center"/>
+
+
+
+
+            <TextBlock x:Name="HintStartDate"
+                         Foreground="Gray"
+                          FontSize="24"
+                                     HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+                          Text="Период страховки с: "
+                          Margin="0 0 0 20"
+                          TextAlignment="Center"/>
+
+
+
+
+            <TextBlock x:Name="HintEndDate"
+                         Foreground="Gray"
+                                     HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+                          FontSize="24"
+                          Text="Период страховки до: "
+                          Margin="0 0 0 20"
+                          TextAlignment="Center"/>
+
+
+            <TextBlock x:Name="HintDrivers"
+                         Foreground="Gray"
+                                     HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+                          FontSize="24"
+                          Text="Водители: "
+                          Margin="0 0 0 20"
+                          TextAlignment="Center"/>
+
+        </StackPanel>
+
+
+
+        <StackPanel HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Width="200"
+                    Grid.Column="1"
+                    Margin="0 0 0 0">
+
+
+            <ComboBox x:Name="CMBStatus"
+                      DisplayMemberPath="StatusName"
+                      FontSize="24"
+                      VerticalContentAlignment="Center"
+                      HorizontalAlignment="Left"
+                      Margin="20 0 0 20"
+                      Width="170"
+                      Height="40" Opacity="0.7"/>
+
+
+            <TextBlock x:Name="TxbInsuranseCost"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             FontSize="24"
+             Margin="20 0 0 20"/>
+
+
+
+            <TextBlock x:Name="TxbPolicyNumber"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+              FontSize="24"
+              Margin="20 0 0 20"/>
+
+
+
+            <TextBlock x:Name="TxbCoverageAmount"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+                         FontSize="24"
+                         Margin="20 0 0 20"/>
+
+
+
+
+
+            <TextBlock x:Name="TxbStartDate"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+               FontSize="24"
+               Margin="20 0 0 20"/>
+
+
+
+
+
+            <TextBlock x:Name="TxbEndDate"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+                       FontSize="24"
+                       Margin="20 0 0 20"/>
+
+            <Button x:Name="BtnDrivers"
+             Grid.Column="1"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center"
+             Height="30"
+             Width="200"
+             IsDefault="True"
+             Margin="0 0 0 20" 
+             Click="BtnDrivers_Click">
+                <Image Source="/Res/Driver.png"/>
+            </Button>
+
+        </StackPanel>
+
+
+
+
+
+
+
+
+        <StackPanel Grid.Column="2"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             Width="280"
+             Margin="0 0 0 0">
+
+            <TextBlock x:Name="HintRegistrationNumber"
+               FontSize="24"
+               Height="40"
+               Foreground="Gray"
+               Text="Регистрационый номер: "
+               Margin="0 0 0 20"
+               TextAlignment="Center"               
+              HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="HintCar"
+               FontSize="24"
+               Foreground="Gray"
+               Text="Транспорт: "
+               Margin="0 0 0 20"
+               TextAlignment="Center"               
+              HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="HintVIN"
+               FontSize="24"
+               Foreground="Gray"
+               Text="VIN: "
+               Margin="0 0 0 20"
+               TextAlignment="Center"               
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="HintUsagePurpose"
+               FontSize="24"
+               Foreground="Gray"
+               Text="Цель использования:"
+               Margin="0 0 0 20"
+               TextAlignment="Center"               
+              HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+
+
+
+
+            <TextBlock x:Name="HintFIO"
+               FontSize="24"
+               Foreground="Gray"
+               Text="ФИО: "
+               Margin="0 0 0 20"
+               TextAlignment="Center"               
+              HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+
+
+            <TextBlock x:Name="HintOwner"
+               FontSize="24"
+               Foreground="Gray"
+               Text="Собственник: "
+               Margin="0 0 0 20"
+               TextAlignment="Center"               
+              HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+
+
+
+            <TextBlock x:Name="HintAgent"
+               FontSize="24"
+               Foreground="Gray"
+               Text="Агент: "
+               Margin="0 0 0 20"
+               TextAlignment="Center"               
+              HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+
+
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="3"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             Width="465"
+             Margin="0 0 0 0">
+
+            <TextBlock x:Name="TxbRegistrationNumber"
+                       FontSize="24"
+                       Height="40"
+                       Margin="20 0 0 20"/>
+            <TextBlock x:Name="TxbCar"
+                       FontSize="24"
+                       Margin="20 0 0 20"/>
+            <TextBlock x:Name="TxbVIN"
+                       FontSize="24"
+                       Margin="20 0 0 20"/>
+            <TextBlock x:Name="TxbUsagePurpose"
+                       FontSize="24"
+                       Margin="20 0 0 20"/>
+            <TextBlock x:Name="TxbFIO"
+                       FontSize="24"
+                       Margin="20 0 0 20"/>
+
+            <TextBlock x:Name="TxbOwner"
+                       FontSize="24"
+                       Margin="20 0 0 20"/>
+
+            <TextBlock x:Name="TxbAgent"
+                       FontSize="24"
+                       Margin="20 0 0 20"/>
+
+
+
+        </StackPanel>
+        
+        
+        
+        <Button x:Name="NextPage"
+             Content="Далее"
+             Grid.Column="3"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Bottom"
+             FontSize="32"
+             Height="60"
+             Width="300"
+             IsDefault="True"
+             Margin="0 0 300 50" 
+             Click="NextPage_Click">
+            <Button.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+            </Button.Effect>
+        </Button>
+
+
+        <Button x:Name="BtnSave"
+             Content="Сохранить"
+             Grid.Column="3"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Bottom"
+             FontSize="32"
+             Height="60"
+             Width="300"
+             IsDefault="True"
+             Margin="0 0 300 50" 
+             Click="BtnSave_Click">
+            <Button.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+            </Button.Effect>
+        </Button>
+
+
+        <Button x:Name="Btnback"
+             Content="Назад"
+             Grid.ColumnSpan="3"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Bottom"
+             FontSize="32"
+             Height="60"
+             Width="300"
+             IsDefault="True"
+             Margin="200 0 0 50" 
+             Click="Btnback_Click" >
+            <Button.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+            </Button.Effect>
+        </Button>
+
+    </Grid>
+</Page>

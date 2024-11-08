@@ -1,0 +1,236 @@
+﻿<Page x:Class="InsuranceCompany.Windows.PageInsuranceOverview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InsuranceCompany.Windows"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="PageInsuranceOverview">
+
+
+    <Page.Resources>
+        <ResourceDictionary Source="/Dictionaries/Pages.xaml"/>
+    </Page.Resources>
+
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                Grid.Row="2"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center">
+
+        <Button x:Name="BtnAuth"
+         Grid.Row="2"
+         Content="Войти"
+         FontSize="25"
+         Width="250"
+         Height="50"
+         Margin="0 0 0 50"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         Background="White"
+         Click="BtnAuth_Click">
+            <Button.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+            </Button.Effect>
+        </Button>
+
+            <Button
+                  x:Name="BtnPersonalAccount"
+                  Grid.Row="2"
+                  Content="Личный кабинет"
+                  FontSize="25"
+                  Width="250"
+                  Height="50"
+                  Margin="30 0 0 50"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Background="White"
+                  Click="BtnPersonalAccount_Click">
+                <Button.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+                </Button.Effect>
+            </Button>
+
+
+            <Button
+             x:Name="BtnAdministrator"
+             Grid.Row="2"
+             Content="Администратор"
+             FontSize="25"
+             Width="250"
+             Height="50"
+             Margin="30 0 0 50"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center"
+             Background="White"
+             Click="BtnAdministrator_Click">
+                <Button.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+                </Button.Effect>
+            </Button>
+
+            <Button x:Name="BtnSignOut"
+                     Grid.Row="2"
+                     Content="Выйти"
+                     FontSize="25"
+                     Width="250"
+                     Height="50"
+                     Margin="30 0 0 50"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Background="White"
+                     Click="BtnSignOut_Click">
+                <Button.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+                </Button.Effect>
+            </Button>
+
+
+
+            <Button x:Name="BtnReg"
+         Grid.Row="2"
+         Content="Зарегистрироваться"
+         FontSize="25"
+         Width="250"
+         Height="50"
+         Margin="30 0 0 50"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         Background="White"
+         Click="BtnReg_Click">
+            <Button.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+            </Button.Effect>
+        </Button>
+
+
+
+        </StackPanel>
+
+
+        <Border Width="800"
+                Height="100"
+         Margin="0,10,0,0"
+         Background="BlueViolet"
+         HorizontalAlignment="Center"
+         VerticalAlignment="Top"
+         BorderThickness="4"
+         CornerRadius="50"
+         BorderBrush="BlueViolet">
+            <Border.Effect>
+                <DropShadowEffect Color="LightGray" BlurRadius="15" ShadowDepth="5"/>
+            </Border.Effect>
+        </Border>
+        <TextBlock Text="Insurance Company Bye"
+            FontSize="50"
+            FontWeight="Bold"
+            Foreground="White"
+            Margin="0 25 0 0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+
+
+
+
+        <StackPanel Orientation="Vertical" Grid.Row="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+
+            <StackPanel Orientation="Horizontal">
+                <Border Style="{StaticResource ItemBorder}"
+                Width="1200"
+                Height="150"
+                Background="Lime">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+                </Border.Effect>
+
+
+            <Button x:Name="BtnComprehensive"
+         Grid.Row="1"
+         FontSize="25"
+         Width="150"
+         Height="100"
+         Margin="10 0"
+         HorizontalAlignment="Left"
+         VerticalAlignment="Center"
+         Click="BtnComprehensive_Click">
+                        <Image Source="/Res/Lenta.png"/>
+                        <Button.Effect>
+                            <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+                        </Button.Effect>
+                    </Button>
+
+
+                </Border>
+            </StackPanel>
+
+
+            <Border Style="{StaticResource ItemBorder}"
+                Grid.ColumnSpan="2"
+                Width="1200"
+                Height="150"
+                Margin="0 30 0 0"
+                    Background="Lime">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+                </Border.Effect>
+
+        <Button x:Name="BtnCTP"
+         Content="ОСАГО"
+         FontSize="32"
+         Width="150"
+         Height="100"
+         Margin="10 0"
+         HorizontalAlignment="Left"
+         VerticalAlignment="Center"
+         Click="BtnCTP_Click">
+                    <Button.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5"/>
+                    </Button.Effect>
+                </Button>
+            </Border>
+
+
+        </StackPanel>
+
+
+            
+        <TextBlock Style="{StaticResource ItemText}" 
+           Grid.Row="1"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           Margin="200 180 0 0"
+           Width="1000"
+           FontSize="24"
+           Text="Рассчитайте стоимость полиса ОСАГО с помощью удобного калькулятора.Оформите страховку на машину онлайн в надежной компании!"/>
+
+
+        <TextBlock Style="{StaticResource ItemText}" 
+           Grid.Row="1"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           Margin="200 0 0 180"
+           Width="1000"
+           FontSize="24"
+           Text="В разработке. Вы сможете рассчитать стоимость вашего полиса КАСКО и оформить заявку на страхование онлайн. Расчет действителен в течение 3-х дней."/>
+    </Grid>
+</Page>

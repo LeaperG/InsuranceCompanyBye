@@ -1,0 +1,2529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище DB" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accident">
+          <Key>
+            <PropertyRef Name="IdAccident" />
+          </Key>
+          <Property Name="IdAccident" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PolicyNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PolicyType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="IdAddress" />
+          </Key>
+          <Property Name="IdAddress" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="House" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apartment" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agents">
+          <Key>
+            <PropertyRef Name="IdAgent" />
+          </Key>
+          <Property Name="IdAgent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="IdPosition" Type="int" Nullable="false" />
+          <Property Name="Salary" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarInsuranceTariffs">
+          <Key>
+            <PropertyRef Name="idCarInsuranceTariffs" />
+          </Key>
+          <Property Name="idCarInsuranceTariffs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarBrand" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CarModel" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Generation" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tariff" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClaimPayments">
+          <Key>
+            <PropertyRef Name="IdPayment" />
+          </Key>
+          <Property Name="IdPayment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DatePaid" Type="date" Nullable="false" />
+          <Property Name="IdClaim" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Claims">
+          <Key>
+            <PropertyRef Name="IdClaim" />
+          </Key>
+          <Property Name="IdClaim" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateFiled" Type="date" Nullable="false" />
+          <Property Name="IdStatus" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdPolicy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientAccidents">
+          <Key>
+            <PropertyRef Name="IdClient" />
+            <PropertyRef Name="IdAccident" />
+          </Key>
+          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdAccident" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="IdAddress" Type="int" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="PassportSeries" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientVehicles">
+          <Key>
+            <PropertyRef Name="IdClient" />
+            <PropertyRef Name="IdVehicle" />
+          </Key>
+          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdVehicle" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="IdDriver" />
+          </Key>
+          <Property Name="IdDriver" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="DriverLicenseSeries" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DriverLicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataDriverLicense" Type="date" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DriversPolicy">
+          <Key>
+            <PropertyRef Name="IdDriver" />
+            <PropertyRef Name="IdPolicy" />
+          </Key>
+          <Property Name="IdDriver" Type="int" Nullable="false" />
+          <Property Name="IdPolicy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsuranceCategories">
+          <Key>
+            <PropertyRef Name="IdCategory" />
+          </Key>
+          <Property Name="IdCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsuranceRisks">
+          <Key>
+            <PropertyRef Name="IdRisk" />
+          </Key>
+          <Property Name="IdRisk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RiskName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="IdOwner" />
+          </Key>
+          <Property Name="IdOwner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pantronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="PassportSeries" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IdAddress" Type="int" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Policies">
+          <Key>
+            <PropertyRef Name="IdPolicy" />
+          </Key>
+          <Property Name="IdPolicy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PolicyNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CoverageAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdOwner" Type="int" Nullable="false" />
+          <Property Name="IdVehicles" Type="int" Nullable="false" />
+          <Property Name="IdAgent" Type="int" Nullable="false" />
+          <Property Name="IdStatus" Type="int" Nullable="false" />
+          <Property Name="InsuranseCost" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="PolicyCategories">
+          <Key>
+            <PropertyRef Name="IdPolicy" />
+            <PropertyRef Name="IdCategory" />
+          </Key>
+          <Property Name="IdPolicy" Type="int" Nullable="false" />
+          <Property Name="IdCategory" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PolicyPayments">
+          <Key>
+            <PropertyRef Name="IdPayment" />
+          </Key>
+          <Property Name="IdPayment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DatePaid" Type="date" Nullable="false" />
+          <Property Name="IdPolicy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PolicyRisks">
+          <Key>
+            <PropertyRef Name="IdPolicy" />
+            <PropertyRef Name="IdRisk" />
+          </Key>
+          <Property Name="IdPolicy" Type="int" Nullable="false" />
+          <Property Name="IdRisk" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="IdPosition" />
+          </Key>
+          <Property Name="IdPosition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IdStatus" />
+          </Key>
+          <Property Name="IdStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UsagePurpose">
+          <Key>
+            <PropertyRef Name="IdUsagePurpose" />
+          </Key>
+          <Property Name="IdUsagePurpose" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsagePurposeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="12" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordDate" Type="datetime" Nullable="false" />
+          <Property Name="PasswordRecovery" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehicleCategory">
+          <Key>
+            <PropertyRef Name="IdVehicleCategory" />
+          </Key>
+          <Property Name="IdVehicleCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleCategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehicleDocuments">
+          <Key>
+            <PropertyRef Name="IdVehicleDocuments" />
+          </Key>
+          <Property Name="IdVehicleDocuments" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeDocument" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DocumentSeries" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DocumentNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DocumentIssueDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicles">
+          <Key>
+            <PropertyRef Name="IdVehicles" />
+          </Key>
+          <Property Name="IdVehicles" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdVehicleCategory" Type="int" Nullable="false" />
+          <Property Name="IdVehicleType" Type="int" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Generation" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Power" Type="float" Nullable="false" />
+          <Property Name="IdUsagePurpose" Type="int" Nullable="false" />
+          <Property Name="IdVehicleDocuments" Type="int" />
+          <Property Name="PeriodOfUse" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VehicleType">
+          <Key>
+            <PropertyRef Name="IdVehicleType" />
+          </Key>
+          <Property Name="IdVehicleType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InsuranceСompanyBye.dbo.AgentPerformanceStatistics" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="AgentPerformanceStatistics">
+          <Key>
+            <PropertyRef Name="AgentName" />
+          </Key>
+          <Property Name="AgentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="NumberOfPoliciesSold" Type="int" />
+          <Property Name="TotalSalesAmount" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="AverageSalesAmount" Type="decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InsuranceСompanyBye.dbo.ClaimStatistics" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ClaimStatistics">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberOfClaims" Type="int" />
+          <Property Name="TotalClaimAmount" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="AverageClaimAmount" Type="decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InsuranceСompanyBye.dbo.PolicyCategoryStatistics" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="PolicyCategoryStatistics">
+          <Key>
+            <PropertyRef Name="CategoryName" />
+          </Key>
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberOfPolicies" Type="int" />
+          <Property Name="TotalCoverageAmount" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="AverageCoverageAmount" Type="decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InsuranceСompanyBye.dbo.VehicleClientView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="VehicleClientView">
+          <Key>
+            <PropertyRef Name="IdVehicles" />
+            <PropertyRef Name="RegistrationNumber" />
+            <PropertyRef Name="Country" />
+            <PropertyRef Name="VIN" />
+            <PropertyRef Name="IdVehicleCategory" />
+            <PropertyRef Name="IdVehicleType" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="Model" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Generation" />
+            <PropertyRef Name="Power" />
+            <PropertyRef Name="IdUsagePurpose" />
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="IdVehicle" />
+            <PropertyRef Name="DocumentIssueDate" />
+            <PropertyRef Name="DocumentNumber" />
+            <PropertyRef Name="DocumentSeries" />
+            <PropertyRef Name="TypeDocument" />
+            <PropertyRef Name="IdVehicleDocuments" />
+            <PropertyRef Name="BirthDate" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="IdAddress" />
+            <PropertyRef Name="IdClient" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="PassportNumber" />
+            <PropertyRef Name="PassportSeries" />
+          </Key>
+          <Property Name="IdVehicles" Type="int" Nullable="false" />
+          <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdVehicleCategory" Type="int" Nullable="false" />
+          <Property Name="IdVehicleType" Type="int" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Generation" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Power" Type="float" Nullable="false" />
+          <Property Name="IdUsagePurpose" Type="int" Nullable="false" />
+          <Property Name="VehicleDocumentsId" Type="int" />
+          <Property Name="PeriodOfUse" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="IdVehicle" Type="int" Nullable="false" />
+          <Property Name="DocumentIssueDate" Type="date" Nullable="false" />
+          <Property Name="DocumentNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DocumentSeries" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TypeDocument" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdVehicleDocuments" Type="int" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdAddress" Type="int" Nullable="false" />
+          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassportSeries" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ClaimPaym__Claim__44FF419A">
+          <End Role="Claims" Type="Self.Claims" Multiplicity="1" />
+          <End Role="ClaimPayments" Type="Self.ClaimPayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Claims">
+              <PropertyRef Name="IdClaim" />
+            </Principal>
+            <Dependent Role="ClaimPayments">
+              <PropertyRef Name="IdClaim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Claims__PolicyID__4222D4EF">
+          <End Role="Policies" Type="Self.Policies" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="IdPolicy" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="IdPolicy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Policies__Client__398D8EEE">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Policies" Type="Self.Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PolicyCat__Categ__5629CD9C">
+          <End Role="InsuranceCategories" Type="Self.InsuranceCategories" Multiplicity="1" />
+          <End Role="PolicyCategories" Type="Self.PolicyCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCategories">
+              <PropertyRef Name="IdCategory" />
+            </Principal>
+            <Dependent Role="PolicyCategories">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PolicyCat__Polic__5535A963">
+          <End Role="Policies" Type="Self.Policies" Multiplicity="1" />
+          <End Role="PolicyCategories" Type="Self.PolicyCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="IdPolicy" />
+            </Principal>
+            <Dependent Role="PolicyCategories">
+              <PropertyRef Name="IdPolicy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PolicyPay__Polic__59063A47">
+          <End Role="Policies" Type="Self.Policies" Multiplicity="1" />
+          <End Role="PolicyPayments" Type="Self.PolicyPayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="IdPolicy" />
+            </Principal>
+            <Dependent Role="PolicyPayments">
+              <PropertyRef Name="IdPolicy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PolicyRis__Polic__5DCAEF64">
+          <End Role="Policies" Type="Self.Policies" Multiplicity="1" />
+          <End Role="PolicyRisks" Type="Self.PolicyRisks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="IdPolicy" />
+            </Principal>
+            <Dependent Role="PolicyRisks">
+              <PropertyRef Name="IdPolicy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PolicyRis__RiskI__5EBF139D">
+          <End Role="InsuranceRisks" Type="Self.InsuranceRisks" Multiplicity="1" />
+          <End Role="PolicyRisks" Type="Self.PolicyRisks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceRisks">
+              <PropertyRef Name="IdRisk" />
+            </Principal>
+            <Dependent Role="PolicyRisks">
+              <PropertyRef Name="IdRisk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Agents" Type="Self.Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Agents" Type="Self.Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="IdPosition" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="IdPosition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_UserAccount1">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="Agents" Type="Self.Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claims_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientAccidents_Accident">
+          <End Role="Accident" Type="Self.Accident" Multiplicity="1" />
+          <End Role="ClientAccidents" Type="Self.ClientAccidents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accident">
+              <PropertyRef Name="IdAccident" />
+            </Principal>
+            <Dependent Role="ClientAccidents">
+              <PropertyRef Name="IdAccident" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientAccidents_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="ClientAccidents" Type="Self.ClientAccidents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="ClientAccidents">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="IdAddress" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_UserAccount">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientVehicles_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="ClientVehicles" Type="Self.ClientVehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="ClientVehicles">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientVehicles_Vehicles">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+          <End Role="ClientVehicles" Type="Self.ClientVehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="IdVehicles" />
+            </Principal>
+            <Dependent Role="ClientVehicles">
+              <PropertyRef Name="IdVehicle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drivers_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Drivers">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DriversPolicy_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+          <End Role="DriversPolicy" Type="Self.DriversPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="IdDriver" />
+            </Principal>
+            <Dependent Role="DriversPolicy">
+              <PropertyRef Name="IdDriver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DriversPolicy_Policies">
+          <End Role="Policies" Type="Self.Policies" Multiplicity="1" />
+          <End Role="DriversPolicy" Type="Self.DriversPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="IdPolicy" />
+            </Principal>
+            <Dependent Role="DriversPolicy">
+              <PropertyRef Name="IdPolicy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Owner_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Owner" Type="Self.Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="IdAddress" />
+            </Principal>
+            <Dependent Role="Owner">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Owner_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Owner" Type="Self.Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Owner">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Agents">
+          <End Role="Agents" Type="Self.Agents" Multiplicity="1" />
+          <End Role="Policies" Type="Self.Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agents">
+              <PropertyRef Name="IdAgent" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Owner">
+          <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+          <End Role="Policies" Type="Self.Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="IdOwner" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Policies" Type="Self.Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Vehicles1">
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="1" />
+          <End Role="Policies" Type="Self.Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="IdVehicles" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdVehicles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAccount_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="UserAccount">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicles_UsagePurpose">
+          <End Role="UsagePurpose" Type="Self.UsagePurpose" Multiplicity="1" />
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsagePurpose">
+              <PropertyRef Name="IdUsagePurpose" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="IdUsagePurpose" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicles_VehicleCategory">
+          <End Role="VehicleCategory" Type="Self.VehicleCategory" Multiplicity="1" />
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleCategory">
+              <PropertyRef Name="IdVehicleCategory" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="IdVehicleCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicles_VehicleDocuments">
+          <End Role="VehicleDocuments" Type="Self.VehicleDocuments" Multiplicity="0..1" />
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleDocuments">
+              <PropertyRef Name="IdVehicleDocuments" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="IdVehicleDocuments" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicles_VehicleType">
+          <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
+          <End Role="Vehicles" Type="Self.Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleType">
+              <PropertyRef Name="IdVehicleType" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="IdVehicleType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetAccidentsByPolicyNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PolicyNumber" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdAccident" Type="int" Nullable="false" />
+                <Property Name="IdClient" Type="int" Nullable="false" />
+                <Property Name="Date" Type="date" Nullable="false" />
+                <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+                <Property Name="PolicyNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+                <Property Name="PolicyType" Type="nvarchar" MaxLength="50" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetClientsWithAccidentCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdClient" Type="int" Nullable="false" />
+                <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+                <Property Name="AccidentCount" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetExpiredPolicies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdPolicy" Type="int" Nullable="false" />
+                <Property Name="PolicyNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+                <Property Name="CoverageAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+                <Property Name="StartDate" Type="date" Nullable="false" />
+                <Property Name="EndDate" Type="date" Nullable="false" />
+                <Property Name="ClientName" Type="nvarchar" MaxLength="101" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_CreateAgent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Patronymic" Type="nvarchar" Mode="In" />
+          <Parameter Name="GenderName" Type="nvarchar" Mode="In" />
+          <Parameter Name="BirthDate" Type="date" Mode="In" />
+          <Parameter Name="PositionName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Salary" Type="decimal" Mode="In" />
+          <Parameter Name="LoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_CreateClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Patronymic" Type="nvarchar" Mode="In" />
+          <Parameter Name="GenderName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Region" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="House" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apartment" Type="nvarchar" Mode="In" />
+          <Parameter Name="BirthDate" Type="date" Mode="In" />
+          <Parameter Name="LoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_CreateInsuranceCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище DBContainer">
+          <EntitySet Name="Accident" EntityType="Self.Accident" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Agents" EntityType="Self.Agents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarInsuranceTariffs" EntityType="Self.CarInsuranceTariffs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClaimPayments" EntityType="Self.ClaimPayments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Claims" EntityType="Self.Claims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientAccidents" EntityType="Self.ClientAccidents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientVehicles" EntityType="Self.ClientVehicles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriversPolicy" EntityType="Self.DriversPolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuranceCategories" EntityType="Self.InsuranceCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuranceRisks" EntityType="Self.InsuranceRisks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Policies" EntityType="Self.Policies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicyCategories" EntityType="Self.PolicyCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicyPayments" EntityType="Self.PolicyPayments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicyRisks" EntityType="Self.PolicyRisks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsagePurpose" EntityType="Self.UsagePurpose" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleCategory" EntityType="Self.VehicleCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleDocuments" EntityType="Self.VehicleDocuments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgentPerformanceStatistics" EntityType="Self.AgentPerformanceStatistics" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[AgentPerformanceStatistics].[AgentName] AS [AgentName], 
+[AgentPerformanceStatistics].[NumberOfPoliciesSold] AS [NumberOfPoliciesSold], 
+[AgentPerformanceStatistics].[TotalSalesAmount] AS [TotalSalesAmount], 
+[AgentPerformanceStatistics].[AverageSalesAmount] AS [AverageSalesAmount]
+FROM [dbo].[AgentPerformanceStatistics] AS [AgentPerformanceStatistics]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ClaimStatistics" EntityType="Self.ClaimStatistics" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ClaimStatistics].[Status] AS [Status], 
+[ClaimStatistics].[NumberOfClaims] AS [NumberOfClaims], 
+[ClaimStatistics].[TotalClaimAmount] AS [TotalClaimAmount], 
+[ClaimStatistics].[AverageClaimAmount] AS [AverageClaimAmount]
+FROM [dbo].[ClaimStatistics] AS [ClaimStatistics]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PolicyCategoryStatistics" EntityType="Self.PolicyCategoryStatistics" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[PolicyCategoryStatistics].[CategoryName] AS [CategoryName], 
+[PolicyCategoryStatistics].[NumberOfPolicies] AS [NumberOfPolicies], 
+[PolicyCategoryStatistics].[TotalCoverageAmount] AS [TotalCoverageAmount], 
+[PolicyCategoryStatistics].[AverageCoverageAmount] AS [AverageCoverageAmount]
+FROM [dbo].[PolicyCategoryStatistics] AS [PolicyCategoryStatistics]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VehicleClientView" EntityType="Self.VehicleClientView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VehicleClientView].[IdVehicles] AS [IdVehicles], 
+[VehicleClientView].[RegistrationNumber] AS [RegistrationNumber], 
+[VehicleClientView].[Country] AS [Country], 
+[VehicleClientView].[VIN] AS [VIN], 
+[VehicleClientView].[IdVehicleCategory] AS [IdVehicleCategory], 
+[VehicleClientView].[IdVehicleType] AS [IdVehicleType], 
+[VehicleClientView].[Brand] AS [Brand], 
+[VehicleClientView].[Model] AS [Model], 
+[VehicleClientView].[Year] AS [Year], 
+[VehicleClientView].[Generation] AS [Generation], 
+[VehicleClientView].[Power] AS [Power], 
+[VehicleClientView].[IdUsagePurpose] AS [IdUsagePurpose], 
+[VehicleClientView].[VehicleDocumentsId] AS [VehicleDocumentsId], 
+[VehicleClientView].[PeriodOfUse] AS [PeriodOfUse], 
+[VehicleClientView].[ClientId] AS [ClientId], 
+[VehicleClientView].[IdVehicle] AS [IdVehicle], 
+[VehicleClientView].[DocumentIssueDate] AS [DocumentIssueDate], 
+[VehicleClientView].[DocumentNumber] AS [DocumentNumber], 
+[VehicleClientView].[DocumentSeries] AS [DocumentSeries], 
+[VehicleClientView].[TypeDocument] AS [TypeDocument], 
+[VehicleClientView].[IdVehicleDocuments] AS [IdVehicleDocuments], 
+[VehicleClientView].[BirthDate] AS [BirthDate], 
+[VehicleClientView].[FirstName] AS [FirstName], 
+[VehicleClientView].[LastName] AS [LastName], 
+[VehicleClientView].[Patronymic] AS [Patronymic], 
+[VehicleClientView].[IdAddress] AS [IdAddress], 
+[VehicleClientView].[IdClient] AS [IdClient], 
+[VehicleClientView].[IdGender] AS [IdGender], 
+[VehicleClientView].[IdUser] AS [IdUser], 
+[VehicleClientView].[PassportNumber] AS [PassportNumber], 
+[VehicleClientView].[PassportSeries] AS [PassportSeries]
+FROM [dbo].[VehicleClientView] AS [VehicleClientView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__ClaimPaym__Claim__44FF419A" Association="Self.FK__ClaimPaym__Claim__44FF419A">
+            <End Role="Claims" EntitySet="Claims" />
+            <End Role="ClaimPayments" EntitySet="ClaimPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Claims__PolicyID__4222D4EF" Association="Self.FK__Claims__PolicyID__4222D4EF">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Policies__Client__398D8EEE" Association="Self.FK__Policies__Client__398D8EEE">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PolicyCat__Categ__5629CD9C" Association="Self.FK__PolicyCat__Categ__5629CD9C">
+            <End Role="InsuranceCategories" EntitySet="InsuranceCategories" />
+            <End Role="PolicyCategories" EntitySet="PolicyCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PolicyCat__Polic__5535A963" Association="Self.FK__PolicyCat__Polic__5535A963">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="PolicyCategories" EntitySet="PolicyCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PolicyPay__Polic__59063A47" Association="Self.FK__PolicyPay__Polic__59063A47">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="PolicyPayments" EntitySet="PolicyPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PolicyRis__Polic__5DCAEF64" Association="Self.FK__PolicyRis__Polic__5DCAEF64">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="PolicyRisks" EntitySet="PolicyRisks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PolicyRis__RiskI__5EBF139D" Association="Self.FK__PolicyRis__RiskI__5EBF139D">
+            <End Role="InsuranceRisks" EntitySet="InsuranceRisks" />
+            <End Role="PolicyRisks" EntitySet="PolicyRisks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Gender" Association="Self.FK_Agents_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Position" Association="Self.FK_Agents_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_UserAccount1" Association="Self.FK_Agents_UserAccount1">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claims_Status" Association="Self.FK_Claims_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientAccidents_Accident" Association="Self.FK_ClientAccidents_Accident">
+            <End Role="Accident" EntitySet="Accident" />
+            <End Role="ClientAccidents" EntitySet="ClientAccidents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientAccidents_Clients" Association="Self.FK_ClientAccidents_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientAccidents" EntitySet="ClientAccidents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Address" Association="Self.FK_Clients_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Gender" Association="Self.FK_Clients_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_UserAccount" Association="Self.FK_Clients_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientVehicles_Clients" Association="Self.FK_ClientVehicles_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="ClientVehicles" EntitySet="ClientVehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientVehicles_Vehicles" Association="Self.FK_ClientVehicles_Vehicles">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="ClientVehicles" EntitySet="ClientVehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drivers_Gender" Association="Self.FK_Drivers_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Drivers" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DriversPolicy_Drivers" Association="Self.FK_DriversPolicy_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="DriversPolicy" EntitySet="DriversPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DriversPolicy_Policies" Association="Self.FK_DriversPolicy_Policies">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="DriversPolicy" EntitySet="DriversPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Owner_Address" Association="Self.FK_Owner_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Owner" EntitySet="Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Owner_Gender" Association="Self.FK_Owner_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Owner" EntitySet="Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Agents" Association="Self.FK_Policies_Agents">
+            <End Role="Agents" EntitySet="Agents" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Owner" Association="Self.FK_Policies_Owner">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Status" Association="Self.FK_Policies_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Vehicles1" Association="Self.FK_Policies_Vehicles1">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAccount_Role" Association="Self.FK_UserAccount_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserAccount" EntitySet="UserAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicles_UsagePurpose" Association="Self.FK_Vehicles_UsagePurpose">
+            <End Role="UsagePurpose" EntitySet="UsagePurpose" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicles_VehicleCategory" Association="Self.FK_Vehicles_VehicleCategory">
+            <End Role="VehicleCategory" EntitySet="VehicleCategory" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicles_VehicleDocuments" Association="Self.FK_Vehicles_VehicleDocuments">
+            <End Role="VehicleDocuments" EntitySet="VehicleDocuments" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicles_VehicleType" Association="Self.FK_Vehicles_VehicleType">
+            <End Role="VehicleType" EntitySet="VehicleType" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="GetAccidentsByPolicyNumber_Result">
+          <Property Name="IdAccident" Type="Int32" Nullable="false" />
+          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PolicyNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PolicyType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetClientsWithAccidentCount_Result">
+          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccidentCount" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="GetExpiredPolicies_Result">
+          <Property Name="IdPolicy" Type="Int32" Nullable="false" />
+          <Property Name="PolicyNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CoverageAmount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="ClientName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="GetAccidentsByPolicyNumber" IsComposable="true" ReturnType="Collection(DB.GetAccidentsByPolicyNumber_Result)">
+          <Parameter Name="PolicyNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetClientsWithAccidentCount" IsComposable="true" ReturnType="Collection(DB.GetClientsWithAccidentCount_Result)" />
+          <FunctionImport Name="GetExpiredPolicies" IsComposable="true" ReturnType="Collection(DB.GetExpiredPolicies_Result)" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CreateAgent">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Patronymic" Mode="In" Type="String" />
+            <Parameter Name="GenderName" Mode="In" Type="String" />
+            <Parameter Name="BirthDate" Mode="In" Type="DateTime" />
+            <Parameter Name="PositionName" Mode="In" Type="String" />
+            <Parameter Name="Salary" Mode="In" Type="Decimal" />
+            <Parameter Name="LoginName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CreateClient">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="Patronymic" Mode="In" Type="String" />
+            <Parameter Name="GenderName" Mode="In" Type="String" />
+            <Parameter Name="Region" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="Street" Mode="In" Type="String" />
+            <Parameter Name="House" Mode="In" Type="String" />
+            <Parameter Name="Apartment" Mode="In" Type="String" />
+            <Parameter Name="BirthDate" Mode="In" Type="DateTime" />
+            <Parameter Name="LoginName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CreateInsuranceCategory">
+          <Parameter Name="CategoryName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DB.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DB.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Accident" EntityType="DB.Accident" />
+          <EntitySet Name="Address" EntityType="DB.Address" />
+          <EntitySet Name="Agents" EntityType="DB.Agents" />
+          <EntitySet Name="CarInsuranceTariffs" EntityType="DB.CarInsuranceTariffs" />
+          <EntitySet Name="ClaimPayments" EntityType="DB.ClaimPayments" />
+          <EntitySet Name="Claims" EntityType="DB.Claims" />
+          <EntitySet Name="Clients" EntityType="DB.Clients" />
+          <EntitySet Name="Drivers" EntityType="DB.Drivers" />
+          <EntitySet Name="Gender" EntityType="DB.Gender" />
+          <EntitySet Name="InsuranceCategories" EntityType="DB.InsuranceCategories" />
+          <EntitySet Name="InsuranceRisks" EntityType="DB.InsuranceRisks" />
+          <EntitySet Name="Owner" EntityType="DB.Owner" />
+          <EntitySet Name="Policies" EntityType="DB.Policies" />
+          <EntitySet Name="PolicyPayments" EntityType="DB.PolicyPayments" />
+          <EntitySet Name="Position" EntityType="DB.Position" />
+          <EntitySet Name="Role" EntityType="DB.Role" />
+          <EntitySet Name="Status" EntityType="DB.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="DB.sysdiagrams" />
+          <EntitySet Name="UsagePurpose" EntityType="DB.UsagePurpose" />
+          <EntitySet Name="UserAccount" EntityType="DB.UserAccount" />
+          <EntitySet Name="VehicleCategory" EntityType="DB.VehicleCategory" />
+          <EntitySet Name="VehicleDocuments" EntityType="DB.VehicleDocuments" />
+          <EntitySet Name="Vehicles" EntityType="DB.Vehicles" />
+          <EntitySet Name="VehicleType" EntityType="DB.VehicleType" />
+          <EntitySet Name="AgentPerformanceStatistics" EntityType="DB.AgentPerformanceStatistics" />
+          <EntitySet Name="ClaimStatistics" EntityType="DB.ClaimStatistics" />
+          <EntitySet Name="PolicyCategoryStatistics" EntityType="DB.PolicyCategoryStatistics" />
+          <EntitySet Name="VehicleClientView" EntityType="DB.VehicleClientView" />
+          <AssociationSet Name="FK_Clients_Address" Association="DB.FK_Clients_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Owner_Address" Association="DB.FK_Owner_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Owner" EntitySet="Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Gender" Association="DB.FK_Agents_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Position" Association="DB.FK_Agents_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_UserAccount1" Association="DB.FK_Agents_UserAccount1">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Agents" Association="DB.FK_Policies_Agents">
+            <End Role="Agents" EntitySet="Agents" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClaimPaym__Claim__44FF419A" Association="DB.FK__ClaimPaym__Claim__44FF419A">
+            <End Role="Claims" EntitySet="Claims" />
+            <End Role="ClaimPayments" EntitySet="ClaimPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Claims__PolicyID__4222D4EF" Association="DB.FK__Claims__PolicyID__4222D4EF">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claims_Status" Association="DB.FK_Claims_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Claims" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Policies__Client__398D8EEE" Association="DB.FK__Policies__Client__398D8EEE">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_Gender" Association="DB.FK_Clients_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clients_UserAccount" Association="DB.FK_Clients_UserAccount">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drivers_Gender" Association="DB.FK_Drivers_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Drivers" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Owner_Gender" Association="DB.FK_Owner_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Owner" EntitySet="Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Owner" Association="DB.FK_Policies_Owner">
+            <End Role="Owner" EntitySet="Owner" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PolicyPay__Polic__59063A47" Association="DB.FK__PolicyPay__Polic__59063A47">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="PolicyPayments" EntitySet="PolicyPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Status" Association="DB.FK_Policies_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Policies_Vehicles1" Association="DB.FK_Policies_Vehicles1">
+            <End Role="Vehicles" EntitySet="Vehicles" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAccount_Role" Association="DB.FK_UserAccount_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserAccount" EntitySet="UserAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicles_UsagePurpose" Association="DB.FK_Vehicles_UsagePurpose">
+            <End Role="UsagePurpose" EntitySet="UsagePurpose" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicles_VehicleCategory" Association="DB.FK_Vehicles_VehicleCategory">
+            <End Role="VehicleCategory" EntitySet="VehicleCategory" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicles_VehicleDocuments" Association="DB.FK_Vehicles_VehicleDocuments">
+            <End Role="VehicleDocuments" EntitySet="VehicleDocuments" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicles_VehicleType" Association="DB.FK_Vehicles_VehicleType">
+            <End Role="VehicleType" EntitySet="VehicleType" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="ClientAccidents" Association="DB.ClientAccidents">
+            <End Role="Accident" EntitySet="Accident" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="ClientVehicles" Association="DB.ClientVehicles">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Vehicles" EntitySet="Vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="DriversPolicy" Association="DB.DriversPolicy">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="PolicyCategories" Association="DB.PolicyCategories">
+            <End Role="InsuranceCategories" EntitySet="InsuranceCategories" />
+            <End Role="Policies" EntitySet="Policies" />
+          </AssociationSet>
+          <AssociationSet Name="PolicyRisks" Association="DB.PolicyRisks">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="InsuranceRisks" EntitySet="InsuranceRisks" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Accident">
+          <Key>
+            <PropertyRef Name="IdAccident" />
+          </Key>
+          <Property Name="IdAccident" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="DB.ClientAccidents" FromRole="Accident" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="IdAddress" />
+          </Key>
+          <Property Name="IdAddress" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Region" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="House" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apartment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="DB.FK_Clients_Address" FromRole="Address" ToRole="Clients" />
+          <NavigationProperty Name="Owner" Relationship="DB.FK_Owner_Address" FromRole="Address" ToRole="Owner" />
+        </EntityType>
+        <EntityType Name="Agents">
+          <Key>
+            <PropertyRef Name="IdAgent" />
+          </Key>
+          <Property Name="IdAgent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdPosition" Type="Int32" Nullable="false" />
+          <Property Name="Salary" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Gender" Relationship="DB.FK_Agents_Gender" FromRole="Agents" ToRole="Gender" />
+          <NavigationProperty Name="Position" Relationship="DB.FK_Agents_Position" FromRole="Agents" ToRole="Position" />
+          <NavigationProperty Name="UserAccount" Relationship="DB.FK_Agents_UserAccount1" FromRole="Agents" ToRole="UserAccount" />
+          <NavigationProperty Name="Policies" Relationship="DB.FK_Policies_Agents" FromRole="Agents" ToRole="Policies" />
+        </EntityType>
+        <EntityType Name="CarInsuranceTariffs">
+          <Key>
+            <PropertyRef Name="idCarInsuranceTariffs" />
+          </Key>
+          <Property Name="idCarInsuranceTariffs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarBrand" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CarModel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Generation" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Tariff" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="ClaimPayments">
+          <Key>
+            <PropertyRef Name="IdPayment" />
+          </Key>
+          <Property Name="IdPayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="DatePaid" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdClaim" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Claims" Relationship="DB.FK__ClaimPaym__Claim__44FF419A" FromRole="ClaimPayments" ToRole="Claims" />
+        </EntityType>
+        <EntityType Name="Claims">
+          <Key>
+            <PropertyRef Name="IdClaim" />
+          </Key>
+          <Property Name="IdClaim" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DateFiled" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdPolicy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ClaimPayments" Relationship="DB.FK__ClaimPaym__Claim__44FF419A" FromRole="Claims" ToRole="ClaimPayments" />
+          <NavigationProperty Name="Policies" Relationship="DB.FK__Claims__PolicyID__4222D4EF" FromRole="Claims" ToRole="Policies" />
+          <NavigationProperty Name="Status" Relationship="DB.FK_Claims_Status" FromRole="Claims" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="IdAddress" Type="Int32" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PassportSeries" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Address" Relationship="DB.FK_Clients_Address" FromRole="Clients" ToRole="Address" />
+          <NavigationProperty Name="Policies" Relationship="DB.FK__Policies__Client__398D8EEE" FromRole="Clients" ToRole="Policies" />
+          <NavigationProperty Name="Gender" Relationship="DB.FK_Clients_Gender" FromRole="Clients" ToRole="Gender" />
+          <NavigationProperty Name="UserAccount" Relationship="DB.FK_Clients_UserAccount" FromRole="Clients" ToRole="UserAccount" />
+          <NavigationProperty Name="Accident" Relationship="DB.ClientAccidents" FromRole="Clients" ToRole="Accident" />
+          <NavigationProperty Name="Vehicles" Relationship="DB.ClientVehicles" FromRole="Clients" ToRole="Vehicles" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="IdDriver" />
+          </Key>
+          <Property Name="IdDriver" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DriverLicenseSeries" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DriverLicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataDriverLicense" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="DB.FK_Drivers_Gender" FromRole="Drivers" ToRole="Gender" />
+          <NavigationProperty Name="Policies" Relationship="DB.DriversPolicy" FromRole="Drivers" ToRole="Policies" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Agents" Relationship="DB.FK_Agents_Gender" FromRole="Gender" ToRole="Agents" />
+          <NavigationProperty Name="Clients" Relationship="DB.FK_Clients_Gender" FromRole="Gender" ToRole="Clients" />
+          <NavigationProperty Name="Drivers" Relationship="DB.FK_Drivers_Gender" FromRole="Gender" ToRole="Drivers" />
+          <NavigationProperty Name="Owner" Relationship="DB.FK_Owner_Gender" FromRole="Gender" ToRole="Owner" />
+        </EntityType>
+        <EntityType Name="InsuranceCategories">
+          <Key>
+            <PropertyRef Name="IdCategory" />
+          </Key>
+          <Property Name="IdCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Policies" Relationship="DB.PolicyCategories" FromRole="InsuranceCategories" ToRole="Policies" />
+        </EntityType>
+        <EntityType Name="InsuranceRisks">
+          <Key>
+            <PropertyRef Name="IdRisk" />
+          </Key>
+          <Property Name="IdRisk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RiskName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Policies" Relationship="DB.PolicyRisks" FromRole="InsuranceRisks" ToRole="Policies" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="IdOwner" />
+          </Key>
+          <Property Name="IdOwner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pantronymic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PassportSeries" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IdAddress" Type="Int32" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="DB.FK_Owner_Address" FromRole="Owner" ToRole="Address" />
+          <NavigationProperty Name="Gender" Relationship="DB.FK_Owner_Gender" FromRole="Owner" ToRole="Gender" />
+          <NavigationProperty Name="Policies" Relationship="DB.FK_Policies_Owner" FromRole="Owner" ToRole="Policies" />
+        </EntityType>
+        <EntityType Name="Policies">
+          <Key>
+            <PropertyRef Name="IdPolicy" />
+          </Key>
+          <Property Name="IdPolicy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PolicyNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CoverageAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="IdOwner" Type="Int32" Nullable="false" />
+          <Property Name="IdVehicles" Type="Int32" Nullable="false" />
+          <Property Name="IdAgent" Type="Int32" Nullable="false" />
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
+          <Property Name="InsuranseCost" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Agents" Relationship="DB.FK_Policies_Agents" FromRole="Policies" ToRole="Agents" />
+          <NavigationProperty Name="Claims" Relationship="DB.FK__Claims__PolicyID__4222D4EF" FromRole="Policies" ToRole="Claims" />
+          <NavigationProperty Name="Clients" Relationship="DB.FK__Policies__Client__398D8EEE" FromRole="Policies" ToRole="Clients" />
+          <NavigationProperty Name="Owner" Relationship="DB.FK_Policies_Owner" FromRole="Policies" ToRole="Owner" />
+          <NavigationProperty Name="PolicyPayments" Relationship="DB.FK__PolicyPay__Polic__59063A47" FromRole="Policies" ToRole="PolicyPayments" />
+          <NavigationProperty Name="Status" Relationship="DB.FK_Policies_Status" FromRole="Policies" ToRole="Status" />
+          <NavigationProperty Name="Vehicles" Relationship="DB.FK_Policies_Vehicles1" FromRole="Policies" ToRole="Vehicles" />
+          <NavigationProperty Name="Drivers" Relationship="DB.DriversPolicy" FromRole="Policies" ToRole="Drivers" />
+          <NavigationProperty Name="InsuranceCategories" Relationship="DB.PolicyCategories" FromRole="Policies" ToRole="InsuranceCategories" />
+          <NavigationProperty Name="InsuranceRisks" Relationship="DB.PolicyRisks" FromRole="Policies" ToRole="InsuranceRisks" />
+        </EntityType>
+        <EntityType Name="PolicyPayments">
+          <Key>
+            <PropertyRef Name="IdPayment" />
+          </Key>
+          <Property Name="IdPayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="DatePaid" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdPolicy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Policies" Relationship="DB.FK__PolicyPay__Polic__59063A47" FromRole="PolicyPayments" ToRole="Policies" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="IdPosition" />
+          </Key>
+          <Property Name="IdPosition" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Agents" Relationship="DB.FK_Agents_Position" FromRole="Position" ToRole="Agents" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserAccount" Relationship="DB.FK_UserAccount_Role" FromRole="Role" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="IdStatus" />
+          </Key>
+          <Property Name="IdStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Claims" Relationship="DB.FK_Claims_Status" FromRole="Status" ToRole="Claims" />
+          <NavigationProperty Name="Policies" Relationship="DB.FK_Policies_Status" FromRole="Status" ToRole="Policies" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UsagePurpose">
+          <Key>
+            <PropertyRef Name="IdUsagePurpose" />
+          </Key>
+          <Property Name="IdUsagePurpose" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsagePurposeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicles" Relationship="DB.FK_Vehicles_UsagePurpose" FromRole="UsagePurpose" ToRole="Vehicles" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PasswordRecovery" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Agents" Relationship="DB.FK_Agents_UserAccount1" FromRole="UserAccount" ToRole="Agents" />
+          <NavigationProperty Name="Clients" Relationship="DB.FK_Clients_UserAccount" FromRole="UserAccount" ToRole="Clients" />
+          <NavigationProperty Name="Role" Relationship="DB.FK_UserAccount_Role" FromRole="UserAccount" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="VehicleCategory">
+          <Key>
+            <PropertyRef Name="IdVehicleCategory" />
+          </Key>
+          <Property Name="IdVehicleCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicles" Relationship="DB.FK_Vehicles_VehicleCategory" FromRole="VehicleCategory" ToRole="Vehicles" />
+        </EntityType>
+        <EntityType Name="VehicleDocuments">
+          <Key>
+            <PropertyRef Name="IdVehicleDocuments" />
+          </Key>
+          <Property Name="IdVehicleDocuments" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeDocument" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentSeries" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentIssueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Vehicles" Relationship="DB.FK_Vehicles_VehicleDocuments" FromRole="VehicleDocuments" ToRole="Vehicles" />
+        </EntityType>
+        <EntityType Name="Vehicles">
+          <Key>
+            <PropertyRef Name="IdVehicles" />
+          </Key>
+          <Property Name="IdVehicles" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdVehicleCategory" Type="Int32" Nullable="false" />
+          <Property Name="IdVehicleType" Type="Int32" Nullable="false" />
+          <Property Name="Brand" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Generation" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Power" Type="Double" Nullable="false" />
+          <Property Name="IdUsagePurpose" Type="Int32" Nullable="false" />
+          <Property Name="IdVehicleDocuments" Type="Int32" />
+          <Property Name="PeriodOfUse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Policies" Relationship="DB.FK_Policies_Vehicles1" FromRole="Vehicles" ToRole="Policies" />
+          <NavigationProperty Name="UsagePurpose" Relationship="DB.FK_Vehicles_UsagePurpose" FromRole="Vehicles" ToRole="UsagePurpose" />
+          <NavigationProperty Name="VehicleCategory" Relationship="DB.FK_Vehicles_VehicleCategory" FromRole="Vehicles" ToRole="VehicleCategory" />
+          <NavigationProperty Name="VehicleDocuments" Relationship="DB.FK_Vehicles_VehicleDocuments" FromRole="Vehicles" ToRole="VehicleDocuments" />
+          <NavigationProperty Name="VehicleType" Relationship="DB.FK_Vehicles_VehicleType" FromRole="Vehicles" ToRole="VehicleType" />
+          <NavigationProperty Name="Clients" Relationship="DB.ClientVehicles" FromRole="Vehicles" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="VehicleType">
+          <Key>
+            <PropertyRef Name="IdVehicleType" />
+          </Key>
+          <Property Name="IdVehicleType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicles" Relationship="DB.FK_Vehicles_VehicleType" FromRole="VehicleType" ToRole="Vehicles" />
+        </EntityType>
+        <EntityType Name="AgentPerformanceStatistics">
+          <Key>
+            <PropertyRef Name="AgentName" />
+          </Key>
+          <Property Name="AgentName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfPoliciesSold" Type="Int32" />
+          <Property Name="TotalSalesAmount" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="AverageSalesAmount" Type="Decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <EntityType Name="ClaimStatistics">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfClaims" Type="Int32" />
+          <Property Name="TotalClaimAmount" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="AverageClaimAmount" Type="Decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <EntityType Name="PolicyCategoryStatistics">
+          <Key>
+            <PropertyRef Name="CategoryName" />
+          </Key>
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfPolicies" Type="Int32" />
+          <Property Name="TotalCoverageAmount" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="AverageCoverageAmount" Type="Decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <EntityType Name="VehicleClientView">
+          <Key>
+            <PropertyRef Name="IdVehicles" />
+            <PropertyRef Name="RegistrationNumber" />
+            <PropertyRef Name="Country" />
+            <PropertyRef Name="VIN" />
+            <PropertyRef Name="IdVehicleCategory" />
+            <PropertyRef Name="IdVehicleType" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="Model" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Generation" />
+            <PropertyRef Name="Power" />
+            <PropertyRef Name="IdUsagePurpose" />
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="IdVehicle" />
+            <PropertyRef Name="DocumentIssueDate" />
+            <PropertyRef Name="DocumentNumber" />
+            <PropertyRef Name="DocumentSeries" />
+            <PropertyRef Name="TypeDocument" />
+            <PropertyRef Name="IdVehicleDocuments" />
+            <PropertyRef Name="BirthDate" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="IdAddress" />
+            <PropertyRef Name="IdClient" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="PassportNumber" />
+            <PropertyRef Name="PassportSeries" />
+          </Key>
+          <Property Name="IdVehicles" Type="Int32" Nullable="false" />
+          <Property Name="RegistrationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdVehicleCategory" Type="Int32" Nullable="false" />
+          <Property Name="IdVehicleType" Type="Int32" Nullable="false" />
+          <Property Name="Brand" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Generation" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Power" Type="Double" Nullable="false" />
+          <Property Name="IdUsagePurpose" Type="Int32" Nullable="false" />
+          <Property Name="VehicleDocumentsId" Type="Int32" />
+          <Property Name="PeriodOfUse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="IdVehicle" Type="Int32" Nullable="false" />
+          <Property Name="DocumentIssueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DocumentNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentSeries" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TypeDocument" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdVehicleDocuments" Type="Int32" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdAddress" Type="Int32" Nullable="false" />
+          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassportSeries" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Clients_Address">
+          <End Type="DB.Address" Role="Address" Multiplicity="1" />
+          <End Type="DB.Clients" Role="Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="IdAddress" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Owner_Address">
+          <End Type="DB.Address" Role="Address" Multiplicity="1" />
+          <End Type="DB.Owner" Role="Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="IdAddress" />
+            </Principal>
+            <Dependent Role="Owner">
+              <PropertyRef Name="IdAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Gender">
+          <End Type="DB.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="DB.Agents" Role="Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Position">
+          <End Type="DB.Position" Role="Position" Multiplicity="1" />
+          <End Type="DB.Agents" Role="Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="IdPosition" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="IdPosition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_UserAccount1">
+          <End Type="DB.UserAccount" Role="UserAccount" Multiplicity="1" />
+          <End Type="DB.Agents" Role="Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Agents">
+          <End Type="DB.Agents" Role="Agents" Multiplicity="1" />
+          <End Type="DB.Policies" Role="Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agents">
+              <PropertyRef Name="IdAgent" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClaimPaym__Claim__44FF419A">
+          <End Type="DB.Claims" Role="Claims" Multiplicity="1" />
+          <End Type="DB.ClaimPayments" Role="ClaimPayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Claims">
+              <PropertyRef Name="IdClaim" />
+            </Principal>
+            <Dependent Role="ClaimPayments">
+              <PropertyRef Name="IdClaim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Claims__PolicyID__4222D4EF">
+          <End Type="DB.Policies" Role="Policies" Multiplicity="1" />
+          <End Type="DB.Claims" Role="Claims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="IdPolicy" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="IdPolicy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Claims_Status">
+          <End Type="DB.Status" Role="Status" Multiplicity="1" />
+          <End Type="DB.Claims" Role="Claims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Claims">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Policies__Client__398D8EEE">
+          <End Type="DB.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="DB.Policies" Role="Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_Gender">
+          <End Type="DB.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="DB.Clients" Role="Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clients_UserAccount">
+          <End Type="DB.UserAccount" Role="UserAccount" Multiplicity="1" />
+          <End Type="DB.Clients" Role="Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drivers_Gender">
+          <End Type="DB.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="DB.Drivers" Role="Drivers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Drivers">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Owner_Gender">
+          <End Type="DB.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="DB.Owner" Role="Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Owner">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Owner">
+          <End Type="DB.Owner" Role="Owner" Multiplicity="1" />
+          <End Type="DB.Policies" Role="Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="IdOwner" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PolicyPay__Polic__59063A47">
+          <End Type="DB.Policies" Role="Policies" Multiplicity="1" />
+          <End Type="DB.PolicyPayments" Role="PolicyPayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="IdPolicy" />
+            </Principal>
+            <Dependent Role="PolicyPayments">
+              <PropertyRef Name="IdPolicy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Status">
+          <End Type="DB.Status" Role="Status" Multiplicity="1" />
+          <End Type="DB.Policies" Role="Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="IdStatus" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Policies_Vehicles1">
+          <End Type="DB.Vehicles" Role="Vehicles" Multiplicity="1" />
+          <End Type="DB.Policies" Role="Policies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicles">
+              <PropertyRef Name="IdVehicles" />
+            </Principal>
+            <Dependent Role="Policies">
+              <PropertyRef Name="IdVehicles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAccount_Role">
+          <End Type="DB.Role" Role="Role" Multiplicity="1" />
+          <End Type="DB.UserAccount" Role="UserAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="UserAccount">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicles_UsagePurpose">
+          <End Type="DB.UsagePurpose" Role="UsagePurpose" Multiplicity="1" />
+          <End Type="DB.Vehicles" Role="Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsagePurpose">
+              <PropertyRef Name="IdUsagePurpose" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="IdUsagePurpose" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicles_VehicleCategory">
+          <End Type="DB.VehicleCategory" Role="VehicleCategory" Multiplicity="1" />
+          <End Type="DB.Vehicles" Role="Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleCategory">
+              <PropertyRef Name="IdVehicleCategory" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="IdVehicleCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicles_VehicleDocuments">
+          <End Type="DB.VehicleDocuments" Role="VehicleDocuments" Multiplicity="0..1" />
+          <End Type="DB.Vehicles" Role="Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleDocuments">
+              <PropertyRef Name="IdVehicleDocuments" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="IdVehicleDocuments" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicles_VehicleType">
+          <End Type="DB.VehicleType" Role="VehicleType" Multiplicity="1" />
+          <End Type="DB.Vehicles" Role="Vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleType">
+              <PropertyRef Name="IdVehicleType" />
+            </Principal>
+            <Dependent Role="Vehicles">
+              <PropertyRef Name="IdVehicleType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClientAccidents">
+          <End Type="DB.Accident" Role="Accident" Multiplicity="*" />
+          <End Type="DB.Clients" Role="Clients" Multiplicity="*" />
+        </Association>
+        <Association Name="ClientVehicles">
+          <End Type="DB.Clients" Role="Clients" Multiplicity="*" />
+          <End Type="DB.Vehicles" Role="Vehicles" Multiplicity="*" />
+        </Association>
+        <Association Name="DriversPolicy">
+          <End Type="DB.Drivers" Role="Drivers" Multiplicity="*" />
+          <End Type="DB.Policies" Role="Policies" Multiplicity="*" />
+        </Association>
+        <Association Name="PolicyCategories">
+          <End Type="DB.InsuranceCategories" Role="InsuranceCategories" Multiplicity="*" />
+          <End Type="DB.Policies" Role="Policies" Multiplicity="*" />
+        </Association>
+        <Association Name="PolicyRisks">
+          <End Type="DB.Policies" Role="Policies" Multiplicity="*" />
+          <End Type="DB.InsuranceRisks" Role="InsuranceRisks" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DBContainer" CdmEntityContainer="Entities">
+          <FunctionImportMapping FunctionName="Хранилище DB.GetAccidentsByPolicyNumber" FunctionImportName="GetAccidentsByPolicyNumber">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.GetAccidentsByPolicyNumber_Result">
+                <ScalarProperty Name="IdAccident" ColumnName="IdAccident" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PolicyNumber" ColumnName="PolicyNumber" />
+                <ScalarProperty Name="PolicyType" ColumnName="PolicyType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="Хранилище DB.GetClientsWithAccidentCount" FunctionImportName="GetClientsWithAccidentCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.GetClientsWithAccidentCount_Result">
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="AccidentCount" ColumnName="AccidentCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="Хранилище DB.GetExpiredPolicies" FunctionImportName="GetExpiredPolicies">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.GetExpiredPolicies_Result">
+                <ScalarProperty Name="IdPolicy" ColumnName="IdPolicy" />
+                <ScalarProperty Name="PolicyNumber" ColumnName="PolicyNumber" />
+                <ScalarProperty Name="CoverageAmount" ColumnName="CoverageAmount" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище DB.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_CreateAgent" FunctionName="Хранилище DB.sp_CreateAgent" />
+          <FunctionImportMapping FunctionImportName="sp_CreateClient" FunctionName="Хранилище DB.sp_CreateClient" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище DB.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_CreateInsuranceCategory" FunctionName="Хранилище DB.sp_CreateInsuranceCategory" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище DB.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище DB.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище DB.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище DB.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище DB.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Accident">
+            <EntityTypeMapping TypeName="DB.Accident">
+              <MappingFragment StoreEntitySet="Accident">
+                <ScalarProperty Name="PolicyType" ColumnName="PolicyType" />
+                <ScalarProperty Name="PolicyNumber" ColumnName="PolicyNumber" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdAccident" ColumnName="IdAccident" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Address">
+            <EntityTypeMapping TypeName="DB.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
+                <ScalarProperty Name="House" ColumnName="House" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="DB.Agents">
+              <MappingFragment StoreEntitySet="Agents">
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="IdPosition" ColumnName="IdPosition" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdAgent" ColumnName="IdAgent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarInsuranceTariffs">
+            <EntityTypeMapping TypeName="DB.CarInsuranceTariffs">
+              <MappingFragment StoreEntitySet="CarInsuranceTariffs">
+                <ScalarProperty Name="Tariff" ColumnName="Tariff" />
+                <ScalarProperty Name="Generation" ColumnName="Generation" />
+                <ScalarProperty Name="CarModel" ColumnName="CarModel" />
+                <ScalarProperty Name="CarBrand" ColumnName="CarBrand" />
+                <ScalarProperty Name="idCarInsuranceTariffs" ColumnName="idCarInsuranceTariffs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimPayments">
+            <EntityTypeMapping TypeName="DB.ClaimPayments">
+              <MappingFragment StoreEntitySet="ClaimPayments">
+                <ScalarProperty Name="IdClaim" ColumnName="IdClaim" />
+                <ScalarProperty Name="DatePaid" ColumnName="DatePaid" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IdPayment" ColumnName="IdPayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Claims">
+            <EntityTypeMapping TypeName="DB.Claims">
+              <MappingFragment StoreEntitySet="Claims">
+                <ScalarProperty Name="IdPolicy" ColumnName="IdPolicy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="DateFiled" ColumnName="DateFiled" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="IdClaim" ColumnName="IdClaim" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="DB.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="DB.Drivers">
+              <MappingFragment StoreEntitySet="Drivers">
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="DataDriverLicense" ColumnName="DataDriverLicense" />
+                <ScalarProperty Name="DriverLicenseNumber" ColumnName="DriverLicenseNumber" />
+                <ScalarProperty Name="DriverLicenseSeries" ColumnName="DriverLicenseSeries" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="IdDriver" ColumnName="IdDriver" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="DB.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuranceCategories">
+            <EntityTypeMapping TypeName="DB.InsuranceCategories">
+              <MappingFragment StoreEntitySet="InsuranceCategories">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuranceRisks">
+            <EntityTypeMapping TypeName="DB.InsuranceRisks">
+              <MappingFragment StoreEntitySet="InsuranceRisks">
+                <ScalarProperty Name="RiskName" ColumnName="RiskName" />
+                <ScalarProperty Name="IdRisk" ColumnName="IdRisk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owner">
+            <EntityTypeMapping TypeName="DB.Owner">
+              <MappingFragment StoreEntitySet="Owner">
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Pantronymic" ColumnName="Pantronymic" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Policies">
+            <EntityTypeMapping TypeName="DB.Policies">
+              <MappingFragment StoreEntitySet="Policies">
+                <ScalarProperty Name="InsuranseCost" ColumnName="InsuranseCost" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="IdAgent" ColumnName="IdAgent" />
+                <ScalarProperty Name="IdVehicles" ColumnName="IdVehicles" />
+                <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="CoverageAmount" ColumnName="CoverageAmount" />
+                <ScalarProperty Name="PolicyNumber" ColumnName="PolicyNumber" />
+                <ScalarProperty Name="IdPolicy" ColumnName="IdPolicy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolicyPayments">
+            <EntityTypeMapping TypeName="DB.PolicyPayments">
+              <MappingFragment StoreEntitySet="PolicyPayments">
+                <ScalarProperty Name="IdPolicy" ColumnName="IdPolicy" />
+                <ScalarProperty Name="DatePaid" ColumnName="DatePaid" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IdPayment" ColumnName="IdPayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="DB.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="IdPosition" ColumnName="IdPosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="DB.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="DB.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsagePurpose">
+            <EntityTypeMapping TypeName="DB.UsagePurpose">
+              <MappingFragment StoreEntitySet="UsagePurpose">
+                <ScalarProperty Name="UsagePurposeName" ColumnName="UsagePurposeName" />
+                <ScalarProperty Name="IdUsagePurpose" ColumnName="IdUsagePurpose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccount">
+            <EntityTypeMapping TypeName="DB.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="PasswordRecovery" ColumnName="PasswordRecovery" />
+                <ScalarProperty Name="PasswordDate" ColumnName="PasswordDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleCategory">
+            <EntityTypeMapping TypeName="DB.VehicleCategory">
+              <MappingFragment StoreEntitySet="VehicleCategory">
+                <ScalarProperty Name="VehicleCategoryName" ColumnName="VehicleCategoryName" />
+                <ScalarProperty Name="IdVehicleCategory" ColumnName="IdVehicleCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleDocuments">
+            <EntityTypeMapping TypeName="DB.VehicleDocuments">
+              <MappingFragment StoreEntitySet="VehicleDocuments">
+                <ScalarProperty Name="DocumentIssueDate" ColumnName="DocumentIssueDate" />
+                <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+                <ScalarProperty Name="DocumentSeries" ColumnName="DocumentSeries" />
+                <ScalarProperty Name="TypeDocument" ColumnName="TypeDocument" />
+                <ScalarProperty Name="IdVehicleDocuments" ColumnName="IdVehicleDocuments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicles">
+            <EntityTypeMapping TypeName="DB.Vehicles">
+              <MappingFragment StoreEntitySet="Vehicles">
+                <ScalarProperty Name="PeriodOfUse" ColumnName="PeriodOfUse" />
+                <ScalarProperty Name="IdVehicleDocuments" ColumnName="IdVehicleDocuments" />
+                <ScalarProperty Name="IdUsagePurpose" ColumnName="IdUsagePurpose" />
+                <ScalarProperty Name="Power" ColumnName="Power" />
+                <ScalarProperty Name="Generation" ColumnName="Generation" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="IdVehicleType" ColumnName="IdVehicleType" />
+                <ScalarProperty Name="IdVehicleCategory" ColumnName="IdVehicleCategory" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="IdVehicles" ColumnName="IdVehicles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleType">
+            <EntityTypeMapping TypeName="DB.VehicleType">
+              <MappingFragment StoreEntitySet="VehicleType">
+                <ScalarProperty Name="VehicleTypeName" ColumnName="VehicleTypeName" />
+                <ScalarProperty Name="IdVehicleType" ColumnName="IdVehicleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgentPerformanceStatistics">
+            <EntityTypeMapping TypeName="DB.AgentPerformanceStatistics">
+              <MappingFragment StoreEntitySet="AgentPerformanceStatistics">
+                <ScalarProperty Name="AverageSalesAmount" ColumnName="AverageSalesAmount" />
+                <ScalarProperty Name="TotalSalesAmount" ColumnName="TotalSalesAmount" />
+                <ScalarProperty Name="NumberOfPoliciesSold" ColumnName="NumberOfPoliciesSold" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimStatistics">
+            <EntityTypeMapping TypeName="DB.ClaimStatistics">
+              <MappingFragment StoreEntitySet="ClaimStatistics">
+                <ScalarProperty Name="AverageClaimAmount" ColumnName="AverageClaimAmount" />
+                <ScalarProperty Name="TotalClaimAmount" ColumnName="TotalClaimAmount" />
+                <ScalarProperty Name="NumberOfClaims" ColumnName="NumberOfClaims" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolicyCategoryStatistics">
+            <EntityTypeMapping TypeName="DB.PolicyCategoryStatistics">
+              <MappingFragment StoreEntitySet="PolicyCategoryStatistics">
+                <ScalarProperty Name="AverageCoverageAmount" ColumnName="AverageCoverageAmount" />
+                <ScalarProperty Name="TotalCoverageAmount" ColumnName="TotalCoverageAmount" />
+                <ScalarProperty Name="NumberOfPolicies" ColumnName="NumberOfPolicies" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleClientView">
+            <EntityTypeMapping TypeName="DB.VehicleClientView">
+              <MappingFragment StoreEntitySet="VehicleClientView">
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="IdVehicleDocuments" ColumnName="IdVehicleDocuments" />
+                <ScalarProperty Name="TypeDocument" ColumnName="TypeDocument" />
+                <ScalarProperty Name="DocumentSeries" ColumnName="DocumentSeries" />
+                <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+                <ScalarProperty Name="DocumentIssueDate" ColumnName="DocumentIssueDate" />
+                <ScalarProperty Name="IdVehicle" ColumnName="IdVehicle" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="PeriodOfUse" ColumnName="PeriodOfUse" />
+                <ScalarProperty Name="VehicleDocumentsId" ColumnName="VehicleDocumentsId" />
+                <ScalarProperty Name="IdUsagePurpose" ColumnName="IdUsagePurpose" />
+                <ScalarProperty Name="Power" ColumnName="Power" />
+                <ScalarProperty Name="Generation" ColumnName="Generation" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="IdVehicleType" ColumnName="IdVehicleType" />
+                <ScalarProperty Name="IdVehicleCategory" ColumnName="IdVehicleCategory" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="IdVehicles" ColumnName="IdVehicles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ClientAccidents" TypeName="DB.ClientAccidents" StoreEntitySet="ClientAccidents">
+            <EndProperty Name="Clients">
+              <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+            </EndProperty>
+            <EndProperty Name="Accident">
+              <ScalarProperty Name="IdAccident" ColumnName="IdAccident" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ClientVehicles" TypeName="DB.ClientVehicles" StoreEntitySet="ClientVehicles">
+            <EndProperty Name="Vehicles">
+              <ScalarProperty Name="IdVehicles" ColumnName="IdVehicle" />
+            </EndProperty>
+            <EndProperty Name="Clients">
+              <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DriversPolicy" TypeName="DB.DriversPolicy" StoreEntitySet="DriversPolicy">
+            <EndProperty Name="Policies">
+              <ScalarProperty Name="IdPolicy" ColumnName="IdPolicy" />
+            </EndProperty>
+            <EndProperty Name="Drivers">
+              <ScalarProperty Name="IdDriver" ColumnName="IdDriver" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PolicyCategories" TypeName="DB.PolicyCategories" StoreEntitySet="PolicyCategories">
+            <EndProperty Name="Policies">
+              <ScalarProperty Name="IdPolicy" ColumnName="IdPolicy" />
+            </EndProperty>
+            <EndProperty Name="InsuranceCategories">
+              <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PolicyRisks" TypeName="DB.PolicyRisks" StoreEntitySet="PolicyRisks">
+            <EndProperty Name="InsuranceRisks">
+              <ScalarProperty Name="IdRisk" ColumnName="IdRisk" />
+            </EndProperty>
+            <EndProperty Name="Policies">
+              <ScalarProperty Name="IdPolicy" ColumnName="IdPolicy" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
